@@ -213,6 +213,7 @@
     ![Alt text](image1.jpeg)
 
     Hal yang perlu diperhatikan:
+    
         a. Function bisa dibuat dengan fungsi umum atau fungsi closure (named / unnamed function)
         b. Code yang dibuat harus bisa mengkalkulasi kondisi jumlah produk yang dinamis, contoh : Produk A quantity n, Produk B quantity m
         c. Penentuan atau kalkulasi berat suatu barang berdasarkan berat aktual dan volumetrik.
@@ -282,7 +283,7 @@
 
     ```
     
-11. Ceritakan kesulitan yang sering anda temui saat anda mengerjakan project dengan bahasa Go. Dan bagaimana anda mengatasi kesulitan tersebut.
+12. Ceritakan kesulitan yang sering anda temui saat anda mengerjakan project dengan bahasa Go. Dan bagaimana anda mengatasi kesulitan tersebut.
 
     Jawab: 
 
