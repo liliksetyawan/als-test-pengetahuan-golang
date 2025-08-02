@@ -9,113 +9,113 @@
 
 2. Jelaskan apa yang anda ketahui mengenai concurrency pada golang?
 
-Jawab:
-
-Concurrency pada golang adalah cara untuk menangani beberapa task atau job yang berjalan secara bersamaan (parallel). Concurrency di golang menggunakan goroutine atau dengan bantuan channle agar setiap goroutine dapat saling terhubung.
+    Jawab:
+    
+    Concurrency pada golang adalah cara untuk menangani beberapa task atau job yang berjalan secara bersamaan (parallel). Concurrency di golang menggunakan goroutine atau dengan bantuan channle agar setiap goroutine dapat saling terhubung.
 
 
 3. Buatlah contoh kode/function golang yang memanfaatkan antara WaitGroup dan Channel, dan jelaskan kapan bisa menggunakan waitgroup atau channel atau keduanya secara bersamaan.
 
-Jawab:
-
-
-Waitgroup tanpa channel digunakan untuk menjalankan task atau job tanpa perlu mengirim data antar goroutine dan hanya perlu menunggu setiap groroutine selesai.
-
-waitgroup.go
-```go
-
-func main() {
-    var wg sync.WaitGroup
-    totalWorker := 5
-
-    for i := 1; i <= totalWorker; i++ {
-        wg.Add(1)
-        go worker(i, &wg, ch)
-    }
-
-   
-    wg.Wait()
-
-}
-
-func worker(id int, wg *sync.WaitGroup) {
-    defer wg.Done()
-
-    // do task here
-}
-   
-```
-
-Channel digunakan untuk menerima/mengirim data antar goroutine.
-
-channel.go
-```go
-
-func worker(id int, ch chan<- string) {
-    ch <- fmt.Sprintf("Worker %d selesai", id)
-}
-
-func main() {
-    ch := make(chan string, 3) // buffered channel dengan kapasitas 3
-
-    // Jalankan 3 goroutine
-    go worker(1, ch)
-    go worker(2, ch)
-    go worker(3, ch)
-
-    // Terima hasil dari 3 goroutine
-    for i := 0; i < 3; i++ {
-        msg := <-ch
-        fmt.Println(msg)
-    }
-
-    fmt.Println("Semua worker selesai.")
-}
-   
-```
-
-
-Channel dan Waitgroup digunakan bersamaan saat menjalankan beberapa goroutine, mengirim datanya ke channel dan perlu tahu kapan semua task atau job selesai sehingga dapat close channel dengan aman.
-
-channel_waitgroup.go
-```go
-
-func worker(id int, wg *sync.WaitGroup, resultChan chan<- string) {
-    defer wg.Done()
-
-    result := fmt.Sprintf("Worker %d selesai", id)
-
-    // Kirim hasil ke channel
-    resultChan <- result
-}
-
-func main() {
-    var wg sync.WaitGroup
-    resultChan := make(chan string, 5) // buffered channel
-
-    totalWorker := 5
-
-    // Jalankan semua worker
-    for i := 1; i <= totalWorker; i++ {
-        wg.Add(1)
-        go worker(i, &wg, resultChan)
-    }
-
-    // Goroutine khusus untuk menutup channel saat semua worker selesai
-    go func() {
+    Jawab:
+    
+    
+    Waitgroup tanpa channel digunakan untuk menjalankan task atau job tanpa perlu mengirim data antar goroutine dan hanya perlu menunggu setiap groroutine selesai.
+    
+    waitgroup.go
+    ```go
+    
+    func main() {
+        var wg sync.WaitGroup
+        totalWorker := 5
+    
+        for i := 1; i <= totalWorker; i++ {
+            wg.Add(1)
+            go worker(i, &wg, ch)
+        }
+    
+       
         wg.Wait()
-        close(resultChan)
-    }()
-
-    // Terima semua hasil dari channel
-    for msg := range resultChan {
-        fmt.Println(msg)
+    
     }
-
-    fmt.Println("Semua pekerjaan selesai.")
-}
-
-```
+    
+    func worker(id int, wg *sync.WaitGroup) {
+        defer wg.Done()
+    
+        // do task here
+    }
+       
+    ```
+    
+    Channel digunakan untuk menerima/mengirim data antar goroutine.
+    
+    channel.go
+    ```go
+    
+    func worker(id int, ch chan<- string) {
+        ch <- fmt.Sprintf("Worker %d selesai", id)
+    }
+    
+    func main() {
+        ch := make(chan string, 3) // buffered channel dengan kapasitas 3
+    
+        // Jalankan 3 goroutine
+        go worker(1, ch)
+        go worker(2, ch)
+        go worker(3, ch)
+    
+        // Terima hasil dari 3 goroutine
+        for i := 0; i < 3; i++ {
+            msg := <-ch
+            fmt.Println(msg)
+        }
+    
+        fmt.Println("Semua worker selesai.")
+    }
+       
+    ```
+    
+    
+    Channel dan Waitgroup digunakan bersamaan saat menjalankan beberapa goroutine, mengirim datanya ke channel dan perlu tahu kapan semua task atau job selesai sehingga dapat close channel dengan aman.
+    
+    channel_waitgroup.go
+    ```go
+    
+    func worker(id int, wg *sync.WaitGroup, resultChan chan<- string) {
+        defer wg.Done()
+    
+        result := fmt.Sprintf("Worker %d selesai", id)
+    
+        // Kirim hasil ke channel
+        resultChan <- result
+    }
+    
+    func main() {
+        var wg sync.WaitGroup
+        resultChan := make(chan string, 5) // buffered channel
+    
+        totalWorker := 5
+    
+        // Jalankan semua worker
+        for i := 1; i <= totalWorker; i++ {
+            wg.Add(1)
+            go worker(i, &wg, resultChan)
+        }
+    
+        // Goroutine khusus untuk menutup channel saat semua worker selesai
+        go func() {
+            wg.Wait()
+            close(resultChan)
+        }()
+    
+        // Terima semua hasil dari channel
+        for msg := range resultChan {
+            fmt.Println(msg)
+        }
+    
+        fmt.Println("Semua pekerjaan selesai.")
+    }
+    
+    ```
 
 
 4. Apa yang anda ketahui dengan goroutine? Pernahkah memakainya? Ceritakan jika pernah, jelaskan kegunaan dan tujuan nya dalam project yang pernah anda kerjakan.
