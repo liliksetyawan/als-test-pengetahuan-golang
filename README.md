@@ -211,3 +211,72 @@
     - Kurir bernama X Kargo, pengiriman dari Gudang A ke Kota B adalah Rp.10.000,- per kg
     - Data pesanan:
     ![Alt text](image1.jpeg)
+    Hal yang perlu diperhatikan:
+        a. Function bisa dibuat dengan fungsi umum atau fungsi closure (named / unnamed function)
+        b. Code yang dibuat harus bisa mengkalkulasi kondisi jumlah produk yang dinamis, contoh : Produk A quantity n, Produk B quantity m
+        c. Penentuan atau kalkulasi berat suatu barang berdasarkan berat aktual dan volumetrik.
+
+
+    Jawab:
+
+    main.go
+    ``` go
+
+    / Struct produk
+    type Produk struct {
+        Nama          string
+        BeratBruto    float64 // dalam gram
+        PanjangMM     float64
+        LebarMM       float64
+        TinggiMM      float64
+    }
+    
+    // Hitung berat dalam kg dari aktual dan volumetrik
+    func hitungBeratEfektif(produk Produk, quantity int) float64 {
+        beratAktual := produk.BeratBruto * float64(quantity) / 1000 // gram ke kg
+
+        // Rumus volumetrik: (p * l * t) / 6000
+        volumePerItem := (produk.PanjangMM * produk.LebarMM * produk.TinggiMM) / 6000
+        beratVolumetrik := volumePerItem * float64(quantity) / 1000 // gram ke kg
+    
+        // Gunakan yang terbesar
+        return math.Max(beratAktual, beratVolumetrik)
+    }
+
+    // Closure untuk kalkulasi ongkos kirim
+    func kalkulatorOngkir(tarifPerKg float64) func([]Produk, map[string]int) float64 {
+        return func(daftarProduk []Produk, qty map[string]int) float64 {
+            var totalBerat float64
+            for _, p := range daftarProduk {
+                quantity := qty[p.Nama]
+                if quantity > 0 {
+                    berat := hitungBeratEfektif(p, quantity)
+                    totalBerat += berat
+                }
+            }
+            return totalBerat * tarifPerKg
+        }
+    }
+    
+    func main() {
+        // Data produk
+        produkList := []Produk{
+            {"Produk A", 30, 115, 85, 25},
+            {"Produk B", 28000, 1290, 300, 625},
+        }
+
+        // Jumlah pesanan
+        quantityMap := map[string]int{
+            "Produk A": 3, // contoh dinamis
+            "Produk B": 1,
+        }
+    
+        // Buat kalkulator ongkir untuk X Kargo
+        tarifXKargo := 10000.0
+        hitungOngkir := kalkulatorOngkir(tarifXKargo)
+    
+        ongkir := hitungOngkir(produkList, quantityMap)
+        fmt.Printf("Total ongkos kirim: Rp%.0f,-\n", ongkir)
+    }
+
+    ```
