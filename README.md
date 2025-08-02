@@ -285,6 +285,6 @@
 
     Jawab: 
 
-    Di golang tidak ada try-catch sehingga harus secara manual hanle error dari suatu function, untuk menangani hal tersebut biasanya saya menggunkan helper function. Kesulitan lainnya adalah kesalahan konversi ```go interface{} ``` yang dapat menyebabkan panic, untuk menangani hal tersebut saya biasanya melakukan assertion dengan ```go ok``` atau dengan menggunakan ```go encoding/json```. Kesulitan lain adalah melakukan mock sql sehingga biasanya saya menggunakan library bantuan untuk mocking seperti DATA-DOG
+    Di golang tidak ada try-catch sehingga harus secara manual hanle error dari suatu function, untuk menangani hal tersebut biasanya saya menggunkan helper function. Kesulitan lainnya adalah kesalahan konversi ```interface{}``` yang dapat menyebabkan panic, untuk menangani hal tersebut saya biasanya melakukan assertion dengan ```ok``` atau dengan menggunakan ```encoding/json```. Kesulitan lain adalah melakukan mock sql sehingga biasanya saya menggunakan library bantuan untuk mocking seperti DATA-DOG.
 
     
