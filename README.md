@@ -122,9 +122,54 @@
 
     Jawab:
 
-    Goroutine adalah fitur di golang untuk menjalankan banyak task dalam waktu yang bersamaan. Goroutine di golang running in background proccess. Saya pernah menggunakan goroutine beberapa kali. Salah satunya adalah ketika saya membuat scheduler untuk generate tiga data report dalam format .csv kemudian upload file tersebut ke FTP dan mengirim message email jika proses berhasil maupun ada error.
+    Goroutine adalah fitur di golang untuk menjalankan banyak task dalam waktu yang bersamaan. Goroutine di golang running in background proccess. Saya pernah menggunakan goroutine beberapa kali. Salah satunya adalah ketika saya membuat scheduler untuk generate tiga data report dalam format .csv kemudian upload file tersebut ke FTP dan mengirim message email jika proses berhasil maupun ada error. Saya menggunakan tiga goroutine untuk menjalankan tiga job tersebut.
 
 5. Jelaskan apa yang anda ketahui mengenai queueing pada golang, dan buat contoh kode sederhana.
+
+    Jawab:
+
+    Queue adalah struktur antrian data yang menggunakan pola first in first out ( FIFO ) dimana data yang masuk terlebih dahulu akan kelaur lebih dahulu juga. Berikut contoh konsep queue sedehana.
+
+    queue.go
+    ```go
+    
+    type Queue []string
+
+    // Tambah data ke belakang (enqueue)
+    func (q *Queue) Enqueue(item string) {
+        *q = append(*q, item)
+    }
+    
+    // Ambil data dari depan (dequeue)
+    func (q *Queue) Dequeue() (string, bool) {
+        if len(*q) == 0 {
+            return "", false // queue kosong
+        }
+        item := (*q)[0]
+        *q = (*q)[1:] // hapus elemen pertama
+        return item, true
+    }
+    
+    func main() {
+        var q Queue
+
+        // Tambah data ke queue
+        q.Enqueue("Job A")
+        q.Enqueue("Job B")
+        q.Enqueue("Job C")
+
+        // Ambil data dari queue
+        for {
+            item, ok := q.Dequeue()
+            if !ok {
+                break
+            }
+            fmt.Println("Proses:", item)
+        }
+    }
+    
+    ```
+ 
 6. Dalam microservices yang semuanya menggunakan Go, bagaimana cara/metode terbaik masing2 service berkomunikasi satu sama lain?
 7. Buatlah contoh kode dalam Go, yang menggambarkan komunikasi antar service yang telah anda jelaskan diatas.
 8. Bagaimana anda mengatasi error dalam Go? Ceritakan pengalaman anda.
