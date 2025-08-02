@@ -119,6 +119,11 @@
 
 
 4. Apa yang anda ketahui dengan goroutine? Pernahkah memakainya? Ceritakan jika pernah, jelaskan kegunaan dan tujuan nya dalam project yang pernah anda kerjakan.
+
+    Jawab:
+
+    Goroutine adalah fitur di golang untuk menjalankan banyak task dalam waktu yang bersamaan. Goroutine di golang running in background proccess. Saya pernah menggunakan goroutine beberapa kali. Salah satunya adalah ketika saya membuat scheduler untuk generate tiga data report dalam format .csv kemudian upload file tersebut ke FTP dan mengirim message email jika proses berhasil maupun ada error.
+
 5. Jelaskan apa yang anda ketahui mengenai queueing pada golang, dan buat contoh kode sederhana.
 6. Dalam microservices yang semuanya menggunakan Go, bagaimana cara/metode terbaik masing2 service berkomunikasi satu sama lain?
 7. Buatlah contoh kode dalam Go, yang menggambarkan komunikasi antar service yang telah anda jelaskan diatas.
