@@ -10,10 +10,42 @@ Jawab:
 2. Jelaskan apa yang anda ketahui mengenai concurrency pada golang?
 
 Jawab:
+
 Concurrency pada golang adalah cara untuk menangani beberapa task atau job yang berjalan secara bersamaan (parallel). Concurrency di golang menggunakan goroutine atau dengan bantuan channle agar setiap goroutine dapat saling terhubung.
 
 
 3. Buatlah contoh kode/function golang yang memanfaatkan antara WaitGroup dan Channel, dan jelaskan kapan bisa menggunakan waitgroup atau channel atau keduanya secara bersamaan.
+
+Jawab:
+
+
+Waitgroup tanpa channel digunakan untuk menjalankan task atau job tanpa perlu mengirim data antar goroutine dan hanya perlu menunggu setiap groroutine selesai.
+waitgroup.go
+```go
+
+func main() {
+    var wg sync.WaitGroup
+    totalWorker := 5
+
+    for i := 1; i <= totalWorker; i++ {
+        wg.Add(1)
+        go worker(i, &wg, ch)
+    }
+
+   
+    wg.Wait()
+
+}
+
+func worker(id int, wg *sync.WaitGroup) {
+    defer wg.Done()
+
+    // do task here
+}
+   
+```
+
+
 4. Apa yang anda ketahui dengan goroutine? Pernahkah memakainya? Ceritakan jika pernah, jelaskan kegunaan dan tujuan nya dalam project yang pernah anda kerjakan.
 5. Jelaskan apa yang anda ketahui mengenai queueing pada golang, dan buat contoh kode sederhana.
 6. Dalam microservices yang semuanya menggunakan Go, bagaimana cara/metode terbaik masing2 service berkomunikasi satu sama lain?
