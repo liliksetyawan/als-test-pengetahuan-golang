@@ -211,6 +211,7 @@
     - Kurir bernama X Kargo, pengiriman dari Gudang A ke Kota B adalah Rp.10.000,- per kg
     - Data pesanan:
     ![Alt text](image1.jpeg)
+
     Hal yang perlu diperhatikan:
         a. Function bisa dibuat dengan fungsi umum atau fungsi closure (named / unnamed function)
         b. Code yang dibuat harus bisa mengkalkulasi kondisi jumlah produk yang dinamis, contoh : Produk A quantity n, Produk B quantity m
