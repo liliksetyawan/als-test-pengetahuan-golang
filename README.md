@@ -227,7 +227,7 @@
     main.go
     ``` go
 
-    / Struct produk
+    // Struct produk
     type Produk struct {
         Nama          string
         BeratBruto    float64 // dalam gram
