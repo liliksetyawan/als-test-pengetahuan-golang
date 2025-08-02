@@ -1,10 +1,10 @@
 # als-test-pengetahuan-golang
 1. Framework golang apa saja yang pernah anda pakai? Dan jelaskan secara singkat dengan framework tersebut project apa yang anda kerjakan dan mengapa menggunakan framework tersebut. 
 
-Jawab: 
-- Saya menggunakan framework gormmigarte untuk running sql migration. Saya menggunakan gormmigrate karena lebih mudah untuk manajemen perubahan table maupun data dan setiap perubahan dapat terrecord dengan baik pada table gorm_migration. Saya menggunakan framework tersebut pada project Nexchief2 dan Grochat.
-- Framework gorilla/mux untuk handle routing. Saya menggunakan gorilla/mux karena framework tersebut salah satu framework yang banyak digunakan untuk hanle routing dan penggunaanya juga cukup mudah. Saya menggunakan framework tersebut di project Nexchief2 dan Grochat.
-- Framework dgrr/fastws untuk handle websocket. Framework tersebut cukup lightweight untuk digunakan. Saya menggunakan framework tersebut pada project Grochat.
+    Jawab: 
+    - Saya menggunakan framework gormmigarte untuk running sql migration. Saya menggunakan gormmigrate karena lebih mudah untuk manajemen perubahan table maupun data dan setiap perubahan dapat terrecord dengan baik pada table gorm_migration. Saya menggunakan framework tersebut pada project Nexchief2 dan Grochat.
+    - Framework gorilla/mux untuk handle routing. Saya menggunakan gorilla/mux karena framework tersebut salah satu framework yang banyak digunakan untuk hanle routing dan penggunaanya juga cukup mudah. Saya menggunakan framework tersebut di project Nexchief2 dan Grochat.
+    - Framework dgrr/fastws untuk handle websocket. Framework tersebut cukup lightweight untuk digunakan. Saya menggunakan framework tersebut pada project Grochat.
 
 
 2. Jelaskan apa yang anda ketahui mengenai concurrency pada golang?
