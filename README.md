@@ -210,4 +210,4 @@
 10. Buat kode dalam golang, untuk output perkiraan ongkos kirim suatu order jika diketahui:
     - Kurir bernama X Kargo, pengiriman dari Gudang A ke Kota B adalah Rp.10.000,- per kg
     - Data pesanan:
-    ![Alt text](image1.jpg)
+    ![Alt text](image1.jpeg)
