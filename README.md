@@ -208,5 +208,6 @@
     Biasanya saya menyimpan log error dalam format json di disimpan dalam file .txt. Log error biasanya menyimpan informasi seperti waktu timestamp, error message, location error code, request id dan sebagainya.
 
 10. Buat kode dalam golang, untuk output perkiraan ongkos kirim suatu order jika diketahui:
-● Kurir bernama X Kargo, pengiriman dari Gudang A ke Kota B adalah Rp.10.000,- per kg
-● Data pesanan:
+    - Kurir bernama X Kargo, pengiriman dari Gudang A ke Kota B adalah Rp.10.000,- per kg
+    - Data pesanan:
+    ![Alt text](image1.jpg)
