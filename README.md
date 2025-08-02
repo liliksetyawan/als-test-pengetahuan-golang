@@ -174,13 +174,13 @@
 
     Jawab:
 
-    Metode komunikasi antar service dalam sistem microservices ada beberapa cara, salah satu metode yang terbaik menurut saya dan pernah saya gunakan adalah dengan menggunakan rest API.
+    Metode komunikasi antar service dalam sistem microservices ada beberapa cara, salah satu metode yang terbaik menurut saya dan pernah saya gunakan adalah dengan menggunakan rest API. Kelebihan yang saya rasakan ketika menggunakan metode ini adalah mudah dalam pengembangannya dan cukup sederhana.
    
 8. Buatlah contoh kode dalam Go, yang menggambarkan komunikasi antar service yang telah anda jelaskan diatas.
 
     Jawab:
 
-    Misalkan service A memerlukan data profile user, maka service A perlu melakukan hit API ke Service Profile User yang mana service tersebut sudah provice API untuk get profile user.
+    Misalkan service A memerlukan data profile user, maka service A perlu melakukan hit API ke Service Profile User yang mana service tersebut sudah provide API untuk get profile user.
 
     service_a.go
     ```go
@@ -198,14 +198,14 @@
 
     Jawab:
 
-    Di Golang error handling adalah bagian yang cukup penting. Go tidak memiliki try-catch seperti di javascript atau Java sehingga error ditangani dengan mengembalikan nilai error dari fungsi dan mengeceknya secara manual.
+    Di Golang error handling adalah bagian yang cukup penting. Go tidak memiliki try-catch seperti di javascript atau Java sehingga error ditangani dengan mengembalikan nilai error dari fungsi dan melakukan pengecekan secara manual.
 
 
 10. Apakah anda memiliki pengalaman dalam error logging dalam Go? Jika ya, jelaskan bagaimana anda menyimpan atau menampilkan setiap log agar mudah dikelola, terutama dalam microservices.
 
     Jawab:
 
-    Biasanya saya menyimpan log error dalam format json di disimpan dalam file .txt. Log error biasanya menyimpan informasi seperti waktu timestamp, error message, location error code, request id dan sebagainya.
+    Biasanya saya menyimpan log error dalam format json yang kemudain disimpan dalam file ```.txt```. Log error biasanya menyimpan informasi seperti waktu timestamp, error message, location error code, request id dan sebagainya.
 
 10. Buat kode dalam golang, untuk output perkiraan ongkos kirim suatu order jika diketahui:
     - Kurir bernama X Kargo, pengiriman dari Gudang A ke Kota B adalah Rp.10.000,- per kg
